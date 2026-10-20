@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Personal Expense Tracker</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-slate-100 min-h-screen">
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-7xl mx-auto px-5 py-5">
+      <!-- HEADER -->
+      <div class="mb-5">
+        <h1 class="text-3xl font-bold text-slate-900">
+          Personal Expense Tracker
+        </h1>
+
+        <p class="text-slate-500 mt-1">
+          Manage your income and expenses easily.
+        </p>
+      </div>
+
+      <!-- DASHBOARD CARDS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- BALANCE -->
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4">
+          <p class="text-sm text-slate-500">Total Balance</p>
+
+          <p id="balance" class="text-2xl font-bold text-blue-600 mt-1">₹0</p>
+        </div>
+
+        <!-- INCOME -->
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4">
+          <p class="text-sm text-slate-500">Total Income</p>
+
+          <p id="income" class="text-2xl font-bold text-green-600 mt-1">₹0</p>
+        </div>
+
+        <!-- EXPENSE -->
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4">
+          <p class="text-sm text-slate-500">Total Expenses</p>
+
+          <p id="expense" class="text-2xl font-bold text-red-500 mt-1">₹0</p>
+        </div>
+
+        <!-- TRANSACTION COUNT -->
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-4">
+          <p class="text-sm text-slate-500">Transactions</p>
+
+          <p
+            id="transactionCount"
+            class="text-2xl font-bold text-violet-600 mt-1"
+          >
+            0
+          </p>
+        </div>
+      </div>
+
+      <!-- FORM + TRANSACTION SECTION -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
+        <!-- LEFT SIDE -->
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-5">
+          <h2 class="text-xl font-bold text-slate-900 mb-4">Add Transaction</h2>
+
+          <!-- FORM -->
+          <form id="transactionForm" class="space-y-3">
+            <!-- TITLE -->
+            <div>
+              <label
+                for="title"
+                class="block text-sm font-medium text-slate-700 mb-1"
+              >
+                Transaction Title
+              </label>
+
+              <input
+                type="text"
+                id="title"
+                placeholder="Enter transaction title"
+                class="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+
+            <!-- AMOUNT -->
+            <div>
+              <label
+                for="amount"
+                class="block text-sm font-medium text-slate-700 mb-1"
+              >
+                Amount
+              </label>
+
+              <input
+                type="number"
+                id="amount"
+                placeholder="Enter amount"
+                class="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+
+            <!-- TYPE -->
+            <div>
+              <label
+                for="type"
+                class="block text-sm font-medium text-slate-700 mb-1"
+              >
+                Type
+              </label>
+
+              <select
+                id="type"
+                class="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">Select Type</option>
+
+                <option value="income">Income</option>
+
+                <option value="expense">Expense</option>
+              </select>
+            </div>
+
+            <!-- CATEGORY -->
+            <div>
+              <label
+                for="category"
+                class="block text-sm font-medium text-slate-700 mb-1"
+              >
+                Category
+              </label>
+
+              <select
+                id="category"
+                class="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">Select Category</option>
+
+                <option value="Salary">Salary</option>
+
+                <option value="Food">Food</option>
+
+                <option value="Shopping">Shopping</option>
+
+                <option value="Travel">Travel</option>
+
+                <option value="Bills">Bills</option>
+
+                <option value="Entertainment">Entertainment</option>
+
+                <option value="Education">Education</option>
+
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <!-- DATE -->
+            <div>
+              <label
+                for="date"
+                class="block text-sm font-medium text-slate-700 mb-1"
+              >
+                Date
+              </label>
+
+              <input
+                type="date"
+                id="date"
+                class="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <!-- BUTTON -->
+            <button
+              type="submit"
+              id="addTransactionBtn"
+              class="w-full bg-blue-600 text-white font-semibold py-2.5 rounded-lg hover:bg-blue-700 transition"
+            >
+              Add Transaction
+            </button>
+          </form>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold text-slate-900">Transactions</h2>
+
+            <span class="text-sm text-slate-400"> Recent Activity </span>
+          </div>
+
+          <!-- SEARCH -->
+          <input
+            type="text"
+            id="search"
+            placeholder="Search transactions..."
+            class="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <!-- FILTER BUTTONS -->
+          <div class="flex gap-2 mt-3">
+            <button
+              type="button"
+              class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm"
+            >
+              All
+            </button>
+
+            <button
+              type="button"
+              class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm"
+            >
+              Income
+            </button>
+
+            <button
+              type="button"
+              class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm"
+            >
+              Expense
+            </button>
+          </div>
+
+          <!-- TRANSACTION LIST AREA -->
+          <div
+            id="transactionList"
+            class="mt-5 min-h-[240px] flex flex-col items-center justify-center text-center"
+          >
+            <div class="text-4xl mb-2">💳</div>
+
+            <h3 class="font-semibold text-slate-800">No transactions yet</h3>
+
+            <p class="text-sm text-slate-500 mt-1">
+              Add your first income or expense.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="app.js"></script>
+  </body>
+</html>
